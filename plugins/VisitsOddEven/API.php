@@ -18,7 +18,7 @@ use Piwik\DataTable\Row;
  */
 class API extends \Piwik\Plugin\API
 {
-
+    
     /**
      * Another example method that returns a data table.
      * @param int    $idSite
@@ -33,7 +33,7 @@ class API extends \Piwik\Plugin\API
     // get data in relation to visit hour (local time)
     $data = \Piwik\Plugins\VisitTime\API::getInstance()->getVisitInformationPerLocalTime(
         $idSite, $period, $date, $segment
-    );          
+    );   
     $data->applyQueuedFilters();
 
     // we could create a new instance by using new DataTable(),
