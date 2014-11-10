@@ -8,6 +8,13 @@ dbname = "aaa"
 tables_prefix = "piwik_"
 charset = "utf8"
 
+[database_tests]
+username = "aaa"
+password = "aaa"
+dbname = "test"
+tables_prefix = "piwik_"
+charset = "utf8"
+
 [General]
 salt = "5824197e58c6771a65479f0e94af2ad5"
 trusted_hosts[] = "localhost"
@@ -65,6 +72,7 @@ Plugins[] = "Morpheus"
 Plugins[] = "Contents"
 Plugins[] = "TestRunner"
 Plugins[] = "VisitorGenerator"
+Plugins[] = "VisitsOddEven"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Login"
@@ -118,4 +126,5 @@ PluginsInstalled[] = "Morpheus"
 PluginsInstalled[] = "Contents"
 PluginsInstalled[] = "TestRunner"
 PluginsInstalled[] = "VisitorGenerator"
+PluginsInstalled[] = "VisitsOddEven"
 
