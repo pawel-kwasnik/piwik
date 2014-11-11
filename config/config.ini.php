@@ -72,7 +72,7 @@ Plugins[] = "Morpheus"
 Plugins[] = "Contents"
 Plugins[] = "TestRunner"
 Plugins[] = "VisitorGenerator"
-Plugins[] = "VisitsOddEven"
+Plugins[] = "EvenUnevenTimes"
 
 [PluginsInstalled]
 PluginsInstalled[] = "Login"
@@ -126,5 +126,5 @@ PluginsInstalled[] = "Morpheus"
 PluginsInstalled[] = "Contents"
 PluginsInstalled[] = "TestRunner"
 PluginsInstalled[] = "VisitorGenerator"
-PluginsInstalled[] = "VisitsOddEven"
+PluginsInstalled[] = "EvenUnevenTimes"
 
