@@ -11,9 +11,9 @@ use Piwik\Date;
 use Piwik\Tests\Framework\Fixture;
 
 /**
- * Generates tracker testing data for our SimpleSystemTest
+ * Generates tracker testing data
  *
- * This Simple fixture adds one website and tracks one visit with couple pageviews and an ecommerce conversion
+ * This Simple fixture adds one website and tracks three visits with couple pageviews and an ecommerce conversion
  */
 class SimpleFixtureTrackFewVisits extends Fixture
 {
