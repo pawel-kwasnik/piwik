@@ -1,0 +1,8 @@
+{
+    "EvenUnevenTimes": {
+        "Name": "Parzyste/nieparzyste godziny",
+        "Even": "Parzysta",
+        "Uneven": "Nieparzysta",
+        "Times": "Godzina"
+    }
+}
