@@ -20,7 +20,7 @@ class API extends \Piwik\Plugin\API
 {
     
     /**
-     * Another example method that returns a data table.
+     * Method returning number of visits grouped by even and uneven hour of visit.
      * @param int    $idSite
      * @param string $period
      * @param string $date
@@ -31,7 +31,7 @@ class API extends \Piwik\Plugin\API
     {
 
     // get data in relation to visit hour (local time)
-    $data = \Piwik\Plugins\VisitTime\API::getInstance()->getVisitInformationPerLocalTime(
+    $data = \Piwik\Plugins\VisitTime\API::getInstance()->getVisitInformationPerServerTime(
         $idSite, $period, $date, $segment
     );   
     $data->applyQueuedFilters();
