@@ -25,7 +25,7 @@ class GetEvenUnevenTimesReport extends Base
     {
         parent::init();
 
-        $this->name          = Piwik::translate('EvenUnevenTimes_EvenUnevenTimesReport');
+        $this->name          = Piwik::translate('EvenUnevenTimes_Name');
         $this->dimension     = null;
         $this->documentation = Piwik::translate('');
 
@@ -50,11 +50,11 @@ class GetEvenUnevenTimesReport extends Base
         // $this->constantRowsCount = true;
 
         // If a menu title is specified, the report will be displayed in the menu
-        $this->menuTitle = 'Even/Uneven times';
+        $this->menuTitle = Piwik::translate('EvenUnevenTimes_Name');
 
         // If a widget title is specified, the report will be displayed in the list of widgets and the report can be
         // exported as a widget
-        $this->widgetTitle = 'Even/Uneven times';
+        $this->widgetTitle = Piwik::translate('EvenUnevenTimes_Name');
     }
 
     /**
@@ -68,8 +68,7 @@ class GetEvenUnevenTimesReport extends Base
         
     // Disable the 'Show All Columns' footer icon
     $view->config->show_table_all_columns = false;
-    // The 'label' column will have 'Times' as a title
-    $view->config->addTranslation('label', 'Times');
+    $view->config->addTranslation('label', Piwik::translate('EvenUnevenTimes_Times'));
     $view->config->columns_to_display = array_merge(array('label'), $this->metrics);        
     
     }
