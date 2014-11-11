@@ -30,7 +30,7 @@ class SimpleFixtureTrackFewVisits extends Fixture
 
     public function tearDown()
     {
-        // empty
+        // empty 
     }
 
     private function setUpWebsite()
