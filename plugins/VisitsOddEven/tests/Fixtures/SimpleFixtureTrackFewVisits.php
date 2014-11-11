@@ -25,6 +25,7 @@ class SimpleFixtureTrackFewVisits extends Fixture
         $this->setUpWebsite();
         $this->trackFirstVisit();
         $this->trackSecondVisit();
+        $this->trackThirdVisit();
     }
 
     public function tearDown()
@@ -74,4 +75,23 @@ class SimpleFixtureTrackFewVisits extends Fixture
         $t->addEcommerceItem($sku = 'SKU_ID2', $name = 'A durable item', $category = 'Best seller', $price = 321);
         self::checkResponse($t->doTrackEcommerceCartUpdate($grandTotal = 33 * 77));
     }
+    
+    protected function trackThirdVisit()
+    {
+        $t = self::getTracker($this->idSite, $this->dateTime, $defaultInit = true);
+        $t->setIp('56.11.55.73');
+
+        $t->setForceVisitDateTime(Date::factory($this->dateTime)->addHour(1.1)->getDatetime());
+        $t->setUrl('http://example.com/sub/page');
+        self::checkResponse($t->doTrackPageView('Viewing homepage'));
+
+        $t->setForceVisitDateTime(Date::factory($this->dateTime)->addHour(1.2)->getDatetime());
+        $t->setUrl('http://example.com/?search=this is a site search query');
+        self::checkResponse($t->doTrackPageView('Site search query'));
+
+        $t->setForceVisitDateTime(Date::factory($this->dateTime)->addHour(1.3)->getDatetime());
+        $t->addEcommerceItem($sku = 'SKU_ID2', $name = 'A durable item', $category = 'Best seller', $price = 321);
+        self::checkResponse($t->doTrackEcommerceCartUpdate($grandTotal = 33 * 77));
+    }    
+    
 }
