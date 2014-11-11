@@ -2,10 +2,10 @@
 <result>
 	<row>
 		<label>Even</label>
-		<nb_visits>2</nb_visits>
+		<nb_visits>1</nb_visits>
 	</row>
 	<row>
 		<label>Uneven</label>
-		<nb_visits>0</nb_visits>
+		<nb_visits>2</nb_visits>
 	</row>
 </result>
