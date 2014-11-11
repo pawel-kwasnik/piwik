@@ -64,13 +64,11 @@ class GetEvenUnevenTimesReport extends Base
      * @param ViewDataTable $view
      */
     public function configureView(ViewDataTable $view)
-    {
-        
-    // Disable the 'Show All Columns' footer icon
-    $view->config->show_table_all_columns = false;
-    $view->config->addTranslation('label', Piwik::translate('EvenUnevenTimes_Times'));
-    $view->config->columns_to_display = array_merge(array('label'), $this->metrics);        
-    
+    {     
+        // Disable the 'Show All Columns' footer icon
+        $view->config->show_table_all_columns = false;
+        $view->config->addTranslation('label', Piwik::translate('EvenUnevenTimes_Times'));
+        $view->config->columns_to_display = array_merge(array('label'), $this->metrics);           
     }
 
     /**
