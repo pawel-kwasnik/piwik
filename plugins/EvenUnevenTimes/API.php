@@ -8,6 +8,7 @@
  */
 namespace Piwik\Plugins\EvenUnevenTimes;
 
+use Piwik\Piwik;
 use Piwik\DataTable;
 use Piwik\DataTable\Row;
 
@@ -51,10 +52,11 @@ class API extends \Piwik\Plugin\API
         }
     }
 
+    
     // insert data from array with counters to return object (DataTable)
     foreach($rows as $label=>$nb_visits) {
         $result->addRowFromSimpleArray(array(
-            'label'     => $label,
+            'label'     => Piwik::translate("EvenUnevenTimes_{$label}"),
             'nb_visits' => $nb_visits
         ));            
     }
