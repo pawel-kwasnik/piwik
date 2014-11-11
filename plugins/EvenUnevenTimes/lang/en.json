@@ -1,5 +1,8 @@
 {
     "EvenUnevenTimes": {
-        "EvenUnevenTimesReport": "EvenUnevenTimesReport"
+        "Name": "Even/Uneven times",
+        "Even": "Even",
+        "Uneven": "Uneven",
+        "Times": "Times"
     }
 }
