@@ -48,8 +48,8 @@ class API extends \Piwik\Plugin\API
      */
     public function getEvenUnevenTimesReport($idSite, $period, $date, $segment = false) 
     {
-        // use 'EvenUnevenTimes_utcTime' or 'EvenUnevenTimes_visitorTime'
-        return $this->getDataTable('EvenUnevenTimes_utcTime', $idSite, $period, $date, $segment);                     
+        // can use UTC or VISITOR time
+        return $this->getDataTable(Archiver::UTC_TIME_RECORD_NAME, $idSite, $period, $date, $segment);                     
     }
  
 }
