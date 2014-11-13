@@ -9,8 +9,8 @@
 
 namespace Piwik\Plugins\EvenUnevenTimes;
 use Piwik\Piwik;
+use Piwik\Metrics;
 use Piwik\DataTable;
-//use Piwik\Metrics;
 //use Piwik\DataArray;
 //use Piwik\Date;
 //use Piwik\DataTable\Row;
@@ -42,8 +42,7 @@ class Archiver extends \Piwik\Plugin\Archiver
     private function aggregateByLabel($labelSQL, $recordName)
     {        
         $data = $this->getLogAggregator()->getMetricsFromVisitByDimension($labelSQL)->asDataTable();
-        $data->filter('ReplaceColumnNames');
-        
+                
         // prepare simple array
         $parityArray=array( 
             array( 'label' => Piwik::translate("EvenUnevenTimes_Uneven"), 'nb_visits' => 0), 
@@ -51,9 +50,10 @@ class Archiver extends \Piwik\Plugin\Archiver
         );
         
         // increment visits counter for even end uneven hour of visit
-        foreach ($data->getRows() as $visitRow) {
-            $parity=((int)$visitRow->getColumn('label') % 2 == 0);
-            $parityArray[$parity]['nb_visits'] += $visitRow->getColumn('nb_visits');
+        foreach($data->getRows() as $visitRow) {
+            // check parity of hour; 0 for uneven, 1 for even
+            $parity=(int)((int)$visitRow->getColumn('label') % 2 == 0);
+            $parityArray[$parity]['nb_visits'] += $visitRow->getColumn(Metrics::INDEX_NB_VISITS);
         }
         
         $dataTable = new DataTable();
