@@ -1,6 +1,6 @@
 {
  "name": "EvenUnevenTimes",
- "version": "0.1.0",
+ "version": "0.2.0",
  "description": "Show visits grouped by odd and even hour",
  "theme": false,
  "require": {
