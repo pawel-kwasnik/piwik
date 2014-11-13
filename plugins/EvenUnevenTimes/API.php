@@ -11,6 +11,7 @@ namespace Piwik\Plugins\EvenUnevenTimes;
 use Piwik\Piwik;
 use Piwik\DataTable;
 use Piwik\DataTable\Row;
+use Piwik\Archive;
 
 /**
  * API for plugin EvenUnevenTimes
@@ -19,6 +20,24 @@ use Piwik\DataTable\Row;
  */
 class API extends \Piwik\Plugin\API
 {
+      
+    /**
+     * @param string $name
+     * @param int $idSite
+     * @param string $period
+     * @param string $date
+     * @param string $segment
+     * @return DataTable
+     */
+    protected function getDataTable($name, $idSite, $period, $date, $segment)
+    {
+        Piwik::checkUserHasViewAccess($idSite);
+        $archive = Archive::build($idSite, $period, $date, $segment);   
+        $dataTable = $archive->getDataTable($name);
+        $dataTable->queueFilter('ReplaceColumnNames');
+        return $dataTable;
+    }    
+    
     
     /**
      * Method returning number of visits grouped by even and uneven hour of visit.
@@ -30,12 +49,18 @@ class API extends \Piwik\Plugin\API
      */
     public function getEvenUnevenTimesReport($idSite, $period, $date, $segment = false) 
     {
-        // get data in relation to visit hour (local time)
-        $data = \Piwik\Plugins\VisitTime\API::getInstance()->getVisitInformationPerServerTime(
-            $idSite, $period, $date, $segment
-        );   
-        $data->applyQueuedFilters();
 
+
+        // get data in relation to visit hour - using VisitTime plugin
+//        $data = \Piwik\Plugins\VisitTime\API::getInstance()->getVisitInformationPerServerTime(
+//            $idSite, $period, $date, $segment
+//        );   
+
+        // get data in relation to visit hour using own archiver
+        // use 'EvenUnevenTimes_utcTime' or 'EvenUnevenTimes_visitorTime'
+        $data = $this->getDataTable('EvenUnevenTimes_utcTime', $idSite, $period, $date, $segment);
+        $data->applyQueuedFilters();
+        
         // we could create a new instance by using new DataTable(),
         // but we would loose DataTable metadata, which can be useful.        
         $result = $data->getEmptyClone($keepFilters = false);      
@@ -50,7 +75,7 @@ class API extends \Piwik\Plugin\API
                 $rows['Uneven'] += $nb_visits;
             }
         }
-
+        
         // insert data from array with counters to return object (DataTable)
         foreach($rows as $label=>$nb_visits) {
             $result->addRowFromSimpleArray(array(
