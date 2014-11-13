@@ -11,9 +11,6 @@ namespace Piwik\Plugins\EvenUnevenTimes;
 use Piwik\Piwik;
 use Piwik\Metrics;
 use Piwik\DataTable;
-//use Piwik\DataArray;
-//use Piwik\Date;
-//use Piwik\DataTable\Row;
 
 
 class Archiver extends \Piwik\Plugin\Archiver
